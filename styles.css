@@ -1,7 +1,8 @@
 /* Sharp Earth Mono VF — axes: wght 100–800, slnt 0–8.
    The slnt axis runs 0 → +8 (inverted from the OpenType convention), so
    `font-style: oblique` does nothing: browsers negate the angle and it
-   clamps back to 0. Italics must go through font-variation-settings. */
+   clamps back to 0. Italics must go through font-variation-settings, and
+   upright is pinned on body — see the note there. */
 @font-face {
   font-family: "Sharp Earth Mono";
   src: url("/fonts/SharpEarthMonoVF.woff2") format("woff2");
@@ -30,6 +31,12 @@ body {
   color: var(--fg);
   font-family: "Sharp Earth Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   font-weight: 400;
+  /* Pin the slant explicitly. The font ships an italic named instance for
+     every weight, and WebKit resolves a weight by scanning those in order —
+     without this it picks "Italic" for normal text and the whole site leans.
+     Inherited, so everything is upright unless it opts in below. */
+  font-variation-settings: "slnt" 0;
+  font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
 }
