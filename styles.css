@@ -70,12 +70,6 @@ i, em, .italic { font-variation-settings: "slnt" 8; font-style: normal; }
   height: 29px;
 }
 
-/* On light routes the logo scrolls away with the content — pinned, it would
-   collide with the product tiles passing underneath it. */
-body[data-theme="light"] .logo {
-  position: absolute;
-}
-
 body[data-theme="light"] .logo img {
   filter: invert(1);   /* pure white artwork inverts to pure black */
 }
