@@ -181,7 +181,15 @@ body[data-route="shop"] .logo img {
 
 .product__image {
   aspect-ratio: 2 / 3;      /* height is 150% of width */
-  background: var(--tile);
+  background: var(--tile);  /* shows through until the image decodes */
+  overflow: hidden;
+}
+
+.product__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .product__meta {
