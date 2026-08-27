@@ -21,7 +21,7 @@
   --nav-bg: rgba(32, 32, 32, 0.2);   /* #202020 at 20% */
   --nav-fg: #fff;       /* stays white on every route, light or dark */
   --nav-blur: 36px;
-  --scrim-h: 266px;     /* fade height, top and bottom */
+  --scrim-h: 120px;     /* fade height, top and bottom */
   --tile: #f8f6f5;      /* product image placeholder */
   --gutter: 10px;       /* grid gutter and the rhythm around product text */
 }
