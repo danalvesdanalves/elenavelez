@@ -32,7 +32,78 @@
     </section>
 
     <section class="page" id="page-shop">
-      <p class="placeholder">Shop</p>
+      <div class="shop-grid">
+        <a class="product" href="#/shop">
+          <div class="product__image"></div>
+          <div class="product__meta">
+            <span class="product__name">Fractal Gown</span>
+            <span class="product__price">$525</span>
+          </div>
+        </a>
+        <a class="product" href="#/shop">
+          <div class="product__image"></div>
+          <div class="product__meta">
+            <span class="product__name">Fractal Gown</span>
+            <span class="product__price">$525</span>
+          </div>
+        </a>
+        <a class="product" href="#/shop">
+          <div class="product__image"></div>
+          <div class="product__meta">
+            <span class="product__name">Fractal Gown</span>
+            <span class="product__price">$525</span>
+          </div>
+        </a>
+        <a class="product" href="#/shop">
+          <div class="product__image"></div>
+          <div class="product__meta">
+            <span class="product__name">Fractal Gown</span>
+            <span class="product__price">$525</span>
+          </div>
+        </a>
+        <a class="product" href="#/shop">
+          <div class="product__image"></div>
+          <div class="product__meta">
+            <span class="product__name">Fractal Gown</span>
+            <span class="product__price">$525</span>
+          </div>
+        </a>
+        <a class="product" href="#/shop">
+          <div class="product__image"></div>
+          <div class="product__meta">
+            <span class="product__name">Fractal Gown</span>
+            <span class="product__price">$525</span>
+          </div>
+        </a>
+        <a class="product" href="#/shop">
+          <div class="product__image"></div>
+          <div class="product__meta">
+            <span class="product__name">Fractal Gown</span>
+            <span class="product__price">$525</span>
+          </div>
+        </a>
+        <a class="product" href="#/shop">
+          <div class="product__image"></div>
+          <div class="product__meta">
+            <span class="product__name">Fractal Gown</span>
+            <span class="product__price">$525</span>
+          </div>
+        </a>
+        <a class="product" href="#/shop">
+          <div class="product__image"></div>
+          <div class="product__meta">
+            <span class="product__name">Fractal Gown</span>
+            <span class="product__price">$525</span>
+          </div>
+        </a>
+        <a class="product" href="#/shop">
+          <div class="product__image"></div>
+          <div class="product__meta">
+            <span class="product__name">Fractal Gown</span>
+            <span class="product__price">$525</span>
+          </div>
+        </a>
+      </div>
     </section>
 
     <section class="page" id="page-cart">
@@ -89,6 +160,7 @@
 
       function render() {
         var route = current();
+        document.body.dataset.route = route;
         ROUTES.forEach(function (name) {
           document.getElementById('page-' + name)
             .classList.toggle('is-active', name === route);
@@ -108,7 +180,10 @@
           : 'Elena Velez — ' + route.charAt(0).toUpperCase() + route.slice(1);
       }
 
-      window.addEventListener('hashchange', render);
+      window.addEventListener('hashchange', function () {
+        render();
+        window.scrollTo(0, 0);
+      });
       render();
     })();
   </script>

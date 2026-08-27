@@ -21,6 +21,14 @@
   --nav-bg: rgba(32, 32, 32, 0.2);   /* #202020 at 20% */
   --nav-blur: 36px;
   --scrim-h: 266px;     /* fade height, top and bottom */
+  --tile: #f8f6f5;      /* product image placeholder */
+  --gutter: 10px;       /* grid gutter and the rhythm around product text */
+}
+
+/* Shop runs light. Everything themeable reads from these two tokens. */
+body[data-route="shop"] {
+  --bg: #fff;
+  --fg: #000;
 }
 
 * { box-sizing: border-box; }
@@ -58,6 +66,16 @@ i, em, .italic { font-variation-settings: "slnt" 8; font-style: normal; }
   display: block;
   width: 142px;
   height: 29px;
+}
+
+/* On the light route the logo scrolls away with the grid — pinned, it would
+   collide with the product tiles passing underneath it. */
+body[data-route="shop"] .logo {
+  position: absolute;
+}
+
+body[data-route="shop"] .logo img {
+  filter: invert(1);   /* pure white artwork inverts to pure black */
 }
 
 /* ---- pages ---- */
@@ -113,7 +131,7 @@ i, em, .italic { font-variation-settings: "slnt" 8; font-style: normal; }
 /* Custom properties can't be used in a media condition, so this breakpoint
    is a literal. It is the only one in the file. */
 @media (max-width: 767px) {
-  .scrim { display: block; }
+  body[data-route="home"] .scrim { display: block; }
 }
 
 /* ---- bottom navigation ---- */
@@ -144,6 +162,45 @@ i, em, .italic { font-variation-settings: "slnt" 8; font-style: normal; }
   line-height: 1;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+/* ---- shop grid ---- */
+
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: var(--gutter);
+  row-gap: var(--gutter);   /* text to the next row's image */
+}
+
+.product {
+  display: block;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.product__image {
+  aspect-ratio: 2 / 3;      /* height is 150% of width */
+  background: var(--tile);
+}
+
+.product__meta {
+  margin-top: var(--gutter);   /* image to text */
+  text-align: center;
+  font-size: 10px;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--fg);
+}
+
+.product__name,
+.product__price {
+  display: block;
+}
+
+.product__name {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 /* ---- temporary placeholder, delete once real content lands ---- */
