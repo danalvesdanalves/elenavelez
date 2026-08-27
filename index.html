@@ -127,7 +127,10 @@
     </section>
 
     <section class="page" id="page-cart">
-      <p class="placeholder">Cart</p>
+      <div class="cart-empty">
+        <p class="cart-empty__message">Your cart is empty.</p>
+        <a class="button" href="#/shop">Continue shopping</a>
+      </div>
     </section>
   </main>
 
@@ -181,6 +184,7 @@
       function render() {
         var route = current();
         document.body.dataset.route = route;
+        document.body.dataset.theme = route === 'home' ? 'dark' : 'light';
         ROUTES.forEach(function (name) {
           document.getElementById('page-' + name)
             .classList.toggle('is-active', name === route);

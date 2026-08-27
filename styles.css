@@ -19,14 +19,16 @@
   --nav-radius: 0px;    /* bump to 18px for a fully rounded pill */
   --nav-size: 12px;     /* nav label size */
   --nav-bg: rgba(32, 32, 32, 0.2);   /* #202020 at 20% */
+  --nav-fg: #fff;       /* stays white on every route, light or dark */
   --nav-blur: 36px;
   --scrim-h: 266px;     /* fade height, top and bottom */
   --tile: #f8f6f5;      /* product image placeholder */
   --gutter: 10px;       /* grid gutter and the rhythm around product text */
 }
 
-/* Shop runs light. Everything themeable reads from these two tokens. */
-body[data-route="shop"] {
+/* Home is the only dark route. Everything themeable reads from these two
+   tokens, so a route only has to declare which theme it wants. */
+body[data-theme="light"] {
   --bg: #fff;
   --fg: #000;
 }
@@ -68,13 +70,13 @@ i, em, .italic { font-variation-settings: "slnt" 8; font-style: normal; }
   height: 29px;
 }
 
-/* On the light route the logo scrolls away with the grid — pinned, it would
+/* On light routes the logo scrolls away with the content — pinned, it would
    collide with the product tiles passing underneath it. */
-body[data-route="shop"] .logo {
+body[data-theme="light"] .logo {
   position: absolute;
 }
 
-body[data-route="shop"] .logo img {
+body[data-theme="light"] .logo img {
   filter: invert(1);   /* pure white artwork inverts to pure black */
 }
 
@@ -156,12 +158,20 @@ body[data-route="shop"] .logo img {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--fg);
+  color: var(--nav-fg);
   text-decoration: none;
   font-size: var(--nav-size);
   line-height: 1;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  opacity: 0.5;
+  transition: opacity 120ms linear;
+}
+
+.nav a.is-active { opacity: 1; }
+
+@media (hover: hover) {
+  .nav a:hover { opacity: 1; }
 }
 
 /* ---- shop grid ---- */
@@ -209,6 +219,42 @@ body[data-route="shop"] .logo img {
 .product__name {
   text-transform: uppercase;
   letter-spacing: 0.1em;
+}
+
+/* ---- cart ---- */
+
+/* Beats .page.is-active on specificity, so the empty state centres. */
+#page-cart.is-active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-empty {
+  text-align: center;
+}
+
+.cart-empty__message {
+  margin: 0 0 20px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+/* Inverted against the page, so it works on either theme. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 14px;
+  background: var(--fg);
+  color: var(--bg);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
 }
 
 /* ---- temporary placeholder, delete once real content lands ---- */
