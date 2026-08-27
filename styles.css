@@ -18,8 +18,9 @@
   --nav-h: 36px;        /* nav container height */
   --nav-radius: 0px;    /* bump to 18px for a fully rounded pill */
   --nav-size: 12px;     /* nav label size */
-  --rule: 1px;          /* stroke weight */
-  --scrim-h: 266px;     /* bottom fade height */
+  --nav-bg: rgba(32, 32, 32, 0.2);   /* #202020 at 20% */
+  --nav-blur: 36px;
+  --scrim-h: 266px;     /* fade height, top and bottom */
 }
 
 * { box-sizing: border-box; }
@@ -125,9 +126,11 @@ i, em, .italic { font-variation-settings: "slnt" 8; font-style: normal; }
   z-index: 10;
   display: flex;
   height: var(--nav-h);
-  border: var(--rule) solid var(--fg);
   border-radius: var(--nav-radius);
   overflow: hidden;
+  background: var(--nav-bg);
+  -webkit-backdrop-filter: blur(var(--nav-blur));
+  backdrop-filter: blur(var(--nav-blur));
 }
 
 .nav a {
@@ -141,16 +144,6 @@ i, em, .italic { font-variation-settings: "slnt" 8; font-style: normal; }
   line-height: 1;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  opacity: 0.6;
-  transition: opacity 120ms linear;
-}
-
-.nav a + a { border-left: var(--rule) solid var(--fg); }
-
-.nav a.is-active { opacity: 1; }
-
-@media (hover: hover) {
-  .nav a:hover { opacity: 1; }
 }
 
 /* ---- temporary placeholder, delete once real content lands ---- */
