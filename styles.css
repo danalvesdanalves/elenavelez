@@ -63,6 +63,22 @@ i, em, .italic { font-variation-settings: "slnt" 8; font-style: normal; }
 
 .page.is-active { display: block; }
 
+/* ---- homepage video, full bleed behind the chrome ---- */
+
+/* The home page carries a full-screen video, so it drops the page padding. */
+#page-home { padding: 0; }
+
+.hero-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: var(--bg);
+  z-index: 0;
+  pointer-events: none;
+}
+
 /* ---- bottom navigation ---- */
 
 .nav {

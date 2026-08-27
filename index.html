@@ -16,7 +16,19 @@
 
   <main>
     <section class="page" id="page-home">
-      <p class="placeholder">Home</p>
+      <video
+        class="hero-video"
+        id="hero-video"
+        src="https://elenavelez.com/cdn/shop/videos/c/vp/d42e12164b75414eb027d5aa79dd9eeb/d42e12164b75414eb027d5aa79dd9eeb.HD-1080p-7.2Mbps-76784402.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+        webkit-playsinline
+        preload="auto"
+        disablepictureinpicture
+        tabindex="-1"
+        aria-hidden="true"></video>
     </section>
 
     <section class="page" id="page-shop">
@@ -38,6 +50,35 @@
     (function () {
       var ROUTES = ['home', 'shop', 'cart'];
 
+      var hero = document.getElementById('hero-video');
+
+      /* Browsers refuse to start video-only media in a hidden tab, and the
+         promise rejects. Retry when the page becomes visible, and once more on
+         first interaction, so the hero is never left frozen on frame one. */
+      function playHero() {
+        if (!hero) { return; }
+        hero.muted = true;
+        var attempt = hero.play();
+        if (attempt && attempt.catch) { attempt.catch(function () {}); }
+      }
+
+      function pauseHero() {
+        if (hero) { hero.pause(); }
+      }
+
+      document.addEventListener('visibilitychange', function () {
+        if (!document.hidden && current() === 'home') { playHero(); }
+      });
+
+      ['pointerdown', 'touchstart', 'keydown'].forEach(function (evt) {
+        window.addEventListener(evt, function once() {
+          if (current() === 'home') { playHero(); }
+          ['pointerdown', 'touchstart', 'keydown'].forEach(function (e2) {
+            window.removeEventListener(e2, once);
+          });
+        }, { passive: true });
+      });
+
       function current() {
         var hash = location.hash.replace(/^#\/?/, '');
         return ROUTES.indexOf(hash) > -1 ? hash : 'home';
@@ -57,6 +98,8 @@
             a.removeAttribute('aria-current');
           }
         });
+        if (route === 'home') { playHero(); } else { pauseHero(); }
+
         document.title = route === 'home'
           ? 'Elena Velez'
           : 'Elena Velez — ' + route.charAt(0).toUpperCase() + route.slice(1);
