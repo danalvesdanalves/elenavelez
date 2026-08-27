@@ -1,0 +1,111 @@
+/* Sharp Earth Mono VF — axes: wght 100–800, slnt 0–8.
+   The slnt axis runs 0 → +8 (inverted from the OpenType convention), so
+   `font-style: oblique` does nothing: browsers negate the angle and it
+   clamps back to 0. Italics must go through font-variation-settings. */
+@font-face {
+  font-family: "Sharp Earth Mono";
+  src: url("/fonts/SharpEarthMonoVF.woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg: #000;
+  --fg: #fff;
+  --pad: 36px;          /* site padding, all around */
+  --nav-h: 36px;        /* nav container height */
+  --nav-radius: 0px;    /* bump to 18px for a fully rounded pill */
+  --nav-size: 12px;     /* nav label size */
+  --rule: 1px;          /* stroke weight */
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Sharp Earth Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+i, em, .italic { font-variation-settings: "slnt" 8; font-style: normal; }
+
+/* ---- logo, fixed at the top ---- */
+
+.logo {
+  position: fixed;
+  top: var(--pad);
+  left: var(--pad);
+  z-index: 10;
+}
+
+.logo img {
+  display: block;
+  width: 142px;
+  height: 29px;
+}
+
+/* ---- pages ---- */
+
+.page {
+  display: none;
+  min-height: 100dvh;
+  padding: calc(var(--pad) + 29px + var(--pad))   /* top pad + logo + gap */
+           var(--pad)
+           calc(var(--pad) + var(--nav-h) + var(--pad));  /* nav + its offset */
+}
+
+.page.is-active { display: block; }
+
+/* ---- bottom navigation ---- */
+
+.nav {
+  position: fixed;
+  left: var(--pad);
+  right: var(--pad);
+  bottom: var(--pad);
+  z-index: 10;
+  display: flex;
+  height: var(--nav-h);
+  border: var(--rule) solid var(--fg);
+  border-radius: var(--nav-radius);
+  overflow: hidden;
+}
+
+.nav a {
+  flex: 1 1 0;              /* three equal fixed widths */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg);
+  text-decoration: none;
+  font-size: var(--nav-size);
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  transition: opacity 120ms linear;
+}
+
+.nav a + a { border-left: var(--rule) solid var(--fg); }
+
+.nav a.is-active { opacity: 1; }
+
+@media (hover: hover) {
+  .nav a:hover { opacity: 1; }
+}
+
+/* ---- temporary placeholder, delete once real content lands ---- */
+
+.placeholder {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.35;
+}

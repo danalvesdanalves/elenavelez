@@ -2,51 +2,70 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Elena Velez</title>
+  <meta name="theme-color" content="#000000">
   <link rel="preload" href="/fonts/SharpEarthMonoVF.woff2" as="font" type="font/woff2" crossorigin>
-  <style>
-    /* Sharp Earth Mono VF — axes: wght 100–800, slnt 0–8.
-       The slnt axis runs 0 → +8 (inverted from the OpenType convention), so
-       `font-style: oblique` does nothing: browsers negate the angle and it
-       clamps back to 0. Italics must go through font-variation-settings. */
-    @font-face {
-      font-family: "Sharp Earth Mono";
-      src: url("/fonts/SharpEarthMonoVF.woff2") format("woff2");
-      font-weight: 100 800;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    :root {
-      color-scheme: light dark;
-      --bg: #fff;
-      --fg: #111;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root { --bg: #0a0a0a; --fg: #f5f5f5; }
-    }
-
-    html, body { height: 100%; margin: 0; }
-
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--bg);
-      color: var(--fg);
-      font-family: "Sharp Earth Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-weight: 400;
-      font-size: 13px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    /* Italic — use this instead of font-style. */
-    i, em, .italic { font-variation-settings: "slnt" 8; font-style: normal; }
-  </style>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <main>Elena Velez</main>
+
+  <a class="logo" href="#/" aria-label="Elena Velez — home">
+    <img src="/logo.svg" alt="Elena Velez" width="142" height="29">
+  </a>
+
+  <main>
+    <section class="page" id="page-home">
+      <p class="placeholder">Home</p>
+    </section>
+
+    <section class="page" id="page-shop">
+      <p class="placeholder">Shop</p>
+    </section>
+
+    <section class="page" id="page-cart">
+      <p class="placeholder">Cart</p>
+    </section>
+  </main>
+
+  <nav class="nav">
+    <a href="#/" data-route="home">Home</a>
+    <a href="#/shop" data-route="shop">Shop</a>
+    <a href="#/cart" data-route="cart">Cart</a>
+  </nav>
+
+  <script>
+    (function () {
+      var ROUTES = ['home', 'shop', 'cart'];
+
+      function current() {
+        var hash = location.hash.replace(/^#\/?/, '');
+        return ROUTES.indexOf(hash) > -1 ? hash : 'home';
+      }
+
+      function render() {
+        var route = current();
+        ROUTES.forEach(function (name) {
+          document.getElementById('page-' + name)
+            .classList.toggle('is-active', name === route);
+        });
+        document.querySelectorAll('.nav a').forEach(function (a) {
+          a.classList.toggle('is-active', a.dataset.route === route);
+          if (a.dataset.route === route) {
+            a.setAttribute('aria-current', 'page');
+          } else {
+            a.removeAttribute('aria-current');
+          }
+        });
+        document.title = route === 'home'
+          ? 'Elena Velez'
+          : 'Elena Velez — ' + route.charAt(0).toUpperCase() + route.slice(1);
+      }
+
+      window.addEventListener('hashchange', render);
+      render();
+    })();
+  </script>
+
 </body>
 </html>
