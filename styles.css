@@ -124,8 +124,9 @@ body[data-theme="light"] .logo img {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
 }
 
-/* Custom properties can't be used in a media condition, so this breakpoint
-   is a literal. It is the only one in the file. */
+/* Custom properties can't be used in a media condition, so the 767/768
+   boundary is written literally here and in the shop grid below. Below it the
+   layout is the phone one: scrims on, two columns. */
 @media (max-width: 767px) {
   body[data-route="home"] .scrim { display: block; }
 }
@@ -175,6 +176,12 @@ body[data-theme="light"] .logo img {
   grid-template-columns: repeat(2, 1fr);
   column-gap: var(--gutter);
   row-gap: var(--gutter);   /* text to the next row's image */
+}
+
+/* Two columns stop making sense once a tile passes ~340px wide; four brings
+   it back to roughly the phone's tile size. Same boundary as the scrims. */
+@media (min-width: 768px) {
+  .shop-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
 .product {
