@@ -24,6 +24,7 @@
   --scrim-h: 120px;     /* fade height, top and bottom */
   --tile: #f8f6f5;      /* product image placeholder */
   --gutter: 10px;       /* grid gutter and the rhythm around product text */
+  --max-w: 1440px;      /* layout stops growing here and centres */
 }
 
 /* Home is the only dark route. Everything themeable reads from these two
@@ -61,13 +62,18 @@ i, em, .italic { font-variation-settings: "slnt" 8; font-style: normal; }
   position: fixed;
   top: var(--pad);
   left: var(--pad);
+  right: var(--pad);
+  max-width: calc(var(--max-w) - 2 * var(--pad));
+  margin-inline: auto;   /* holds the left edge to the capped frame */
   z-index: 10;
+  pointer-events: none;  /* the anchor spans the frame; only the mark is clickable */
 }
 
 .logo img {
   display: block;
   width: 142px;
   height: 29px;
+  pointer-events: auto;
 }
 
 body[data-theme="light"] .logo img {
@@ -85,6 +91,11 @@ body[data-theme="light"] .logo img {
 }
 
 .page.is-active { display: block; }
+
+.page {
+  max-width: var(--max-w);
+  margin-inline: auto;
+}
 
 /* ---- homepage video, full bleed behind the chrome ---- */
 
@@ -138,6 +149,8 @@ body[data-theme="light"] .logo img {
   left: var(--pad);
   right: var(--pad);
   bottom: var(--pad);
+  max-width: calc(var(--max-w) - 2 * var(--pad));
+  margin-inline: auto;
   z-index: 10;
   display: flex;
   height: var(--nav-h);
