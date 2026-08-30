@@ -32,106 +32,12 @@
     </section>
 
     <section class="page" id="page-shop">
-      <div class="shop-grid">
-        <a class="product" href="#/shop">
-          <div class="product__image">
-            <img src="https://i.imgur.com/34YXBGX.jpeg" alt="" loading="lazy" decoding="async">
-          </div>
-          <div class="product__meta">
-            <span class="product__name">Fractal Gown</span>
-            <span class="product__price">$525</span>
-          </div>
-        </a>
-        <a class="product" href="#/shop">
-          <div class="product__image">
-            <img src="https://i.imgur.com/34YXBGX.jpeg" alt="" loading="lazy" decoding="async">
-          </div>
-          <div class="product__meta">
-            <span class="product__name">Fractal Gown</span>
-            <span class="product__price">$525</span>
-          </div>
-        </a>
-        <a class="product" href="#/shop">
-          <div class="product__image">
-            <img src="https://i.imgur.com/34YXBGX.jpeg" alt="" loading="lazy" decoding="async">
-          </div>
-          <div class="product__meta">
-            <span class="product__name">Fractal Gown</span>
-            <span class="product__price">$525</span>
-          </div>
-        </a>
-        <a class="product" href="#/shop">
-          <div class="product__image">
-            <img src="https://i.imgur.com/34YXBGX.jpeg" alt="" loading="lazy" decoding="async">
-          </div>
-          <div class="product__meta">
-            <span class="product__name">Fractal Gown</span>
-            <span class="product__price">$525</span>
-          </div>
-        </a>
-        <a class="product" href="#/shop">
-          <div class="product__image">
-            <img src="https://i.imgur.com/34YXBGX.jpeg" alt="" loading="lazy" decoding="async">
-          </div>
-          <div class="product__meta">
-            <span class="product__name">Fractal Gown</span>
-            <span class="product__price">$525</span>
-          </div>
-        </a>
-        <a class="product" href="#/shop">
-          <div class="product__image">
-            <img src="https://i.imgur.com/34YXBGX.jpeg" alt="" loading="lazy" decoding="async">
-          </div>
-          <div class="product__meta">
-            <span class="product__name">Fractal Gown</span>
-            <span class="product__price">$525</span>
-          </div>
-        </a>
-        <a class="product" href="#/shop">
-          <div class="product__image">
-            <img src="https://i.imgur.com/34YXBGX.jpeg" alt="" loading="lazy" decoding="async">
-          </div>
-          <div class="product__meta">
-            <span class="product__name">Fractal Gown</span>
-            <span class="product__price">$525</span>
-          </div>
-        </a>
-        <a class="product" href="#/shop">
-          <div class="product__image">
-            <img src="https://i.imgur.com/34YXBGX.jpeg" alt="" loading="lazy" decoding="async">
-          </div>
-          <div class="product__meta">
-            <span class="product__name">Fractal Gown</span>
-            <span class="product__price">$525</span>
-          </div>
-        </a>
-        <a class="product" href="#/shop">
-          <div class="product__image">
-            <img src="https://i.imgur.com/34YXBGX.jpeg" alt="" loading="lazy" decoding="async">
-          </div>
-          <div class="product__meta">
-            <span class="product__name">Fractal Gown</span>
-            <span class="product__price">$525</span>
-          </div>
-        </a>
-        <a class="product" href="#/shop">
-          <div class="product__image">
-            <img src="https://i.imgur.com/34YXBGX.jpeg" alt="" loading="lazy" decoding="async">
-          </div>
-          <div class="product__meta">
-            <span class="product__name">Fractal Gown</span>
-            <span class="product__price">$525</span>
-          </div>
-        </a>
-      </div>
+      <div class="shop-grid" id="shop-grid"></div>
     </section>
 
-    <section class="page" id="page-cart">
-      <div class="cart-empty">
-        <p class="cart-empty__message">Your cart is empty.</p>
-        <a class="button" href="#/shop">Continue shopping</a>
-      </div>
-    </section>
+    <section class="page" id="page-product"></section>
+
+    <section class="page" id="page-cart"></section>
   </main>
 
   <div class="scrim scrim--top" aria-hidden="true"></div>
@@ -140,12 +46,85 @@
   <nav class="nav">
     <a href="#/" data-route="home">Home</a>
     <a href="#/shop" data-route="shop">Shop</a>
-    <a href="#/cart" data-route="cart">Cart</a>
+    <a href="#/cart" data-route="cart">Cart<span class="nav__count" id="nav-count"></span></a>
   </nav>
 
   <script>
     (function () {
-      var ROUTES = ['home', 'shop', 'cart'];
+
+      /* ---- catalogue -------------------------------------------------- */
+
+      var PLACEHOLDER = 'https://i.imgur.com/34YXBGX.jpeg';
+
+      var PRODUCTS = [
+        { id: 'fractal-gown-01', name: 'Fractal Gown', price: 525, image: PLACEHOLDER },
+        { id: 'fractal-gown-02', name: 'Fractal Gown', price: 525, image: PLACEHOLDER },
+        { id: 'fractal-gown-03', name: 'Fractal Gown', price: 525, image: PLACEHOLDER },
+        { id: 'fractal-gown-04', name: 'Fractal Gown', price: 525, image: PLACEHOLDER },
+        { id: 'fractal-gown-05', name: 'Fractal Gown', price: 525, image: PLACEHOLDER },
+        { id: 'fractal-gown-06', name: 'Fractal Gown', price: 525, image: PLACEHOLDER },
+        { id: 'fractal-gown-07', name: 'Fractal Gown', price: 525, image: PLACEHOLDER },
+        { id: 'fractal-gown-08', name: 'Fractal Gown', price: 525, image: PLACEHOLDER },
+        { id: 'fractal-gown-09', name: 'Fractal Gown', price: 525, image: PLACEHOLDER },
+        { id: 'fractal-gown-10', name: 'Fractal Gown', price: 525, image: PLACEHOLDER }
+      ];
+
+      var SIZES = ['XS', 'S', 'M', 'L', 'XL'];
+
+      var byId = {};
+      PRODUCTS.forEach(function (p) { byId[p.id] = p; });
+
+      /* ---- cart ------------------------------------------------------- */
+
+      var STORAGE_KEY = 'ev-cart';
+      var cart = loadCart();
+
+      function loadCart() {
+        try {
+          var parsed = JSON.parse(localStorage.getItem(STORAGE_KEY));
+          if (!Array.isArray(parsed)) { return []; }
+          /* Drop anything whose product no longer exists, so an old basket
+             can't break rendering after the catalogue changes. */
+          return parsed.filter(function (line) {
+            return line && byId[line.id] && line.qty > 0;
+          });
+        } catch (e) { return []; }
+      }
+
+      function saveCart() {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(cart)); } catch (e) {}
+      }
+
+      function cartCount() {
+        return cart.reduce(function (n, line) { return n + line.qty; }, 0);
+      }
+
+      function cartTotal() {
+        return cart.reduce(function (n, line) {
+          return n + byId[line.id].price * line.qty;
+        }, 0);
+      }
+
+      function addToCart(id, size) {
+        var match = cart.filter(function (l) { return l.id === id && l.size === size; })[0];
+        if (match) { match.qty += 1; } else { cart.push({ id: id, size: size, qty: 1 }); }
+        saveCart();
+      }
+
+      function setQty(index, qty) {
+        if (qty <= 0) { cart.splice(index, 1); } else { cart[index].qty = qty; }
+        saveCart();
+      }
+
+      function money(n) { return '$' + n.toLocaleString('en-US'); }
+
+      function escapeHtml(str) {
+        return String(str).replace(/[&<>"']/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+      }
+
+      /* ---- hero video ------------------------------------------------- */
 
       var hero = document.getElementById('hero-video');
 
@@ -159,55 +138,223 @@
         if (attempt && attempt.catch) { attempt.catch(function () {}); }
       }
 
-      function pauseHero() {
-        if (hero) { hero.pause(); }
-      }
+      function pauseHero() { if (hero) { hero.pause(); } }
 
       document.addEventListener('visibilitychange', function () {
-        if (!document.hidden && current() === 'home') { playHero(); }
+        if (!document.hidden && current().name === 'home') { playHero(); }
       });
 
       ['pointerdown', 'touchstart', 'keydown'].forEach(function (evt) {
         window.addEventListener(evt, function once() {
-          if (current() === 'home') { playHero(); }
+          if (current().name === 'home') { playHero(); }
           ['pointerdown', 'touchstart', 'keydown'].forEach(function (e2) {
             window.removeEventListener(e2, once);
           });
         }, { passive: true });
       });
 
+      /* ---- routing ---------------------------------------------------- */
+
+      var PAGES = ['home', 'shop', 'product', 'cart'];
+
       function current() {
-        var hash = location.hash.replace(/^#\/?/, '');
-        return ROUTES.indexOf(hash) > -1 ? hash : 'home';
+        var parts = location.hash.replace(/^#\/?/, '').split('/');
+        var name = parts[0] || 'home';
+        if (name === 'product' && parts[1]) {
+          var id = decodeURIComponent(parts[1]);
+          return byId[id] ? { name: 'product', id: id } : { name: 'shop' };
+        }
+        return PAGES.indexOf(name) > -1 && name !== 'product'
+          ? { name: name }
+          : { name: 'home' };
       }
+
+      /* ---- views ------------------------------------------------------ */
+
+      function renderShop() {
+        document.getElementById('shop-grid').innerHTML = PRODUCTS.map(function (p) {
+          return '<a class="product" href="#/product/' + encodeURIComponent(p.id) + '">' +
+                   '<div class="product__image">' +
+                     '<img src="' + p.image + '" alt="" loading="lazy" decoding="async">' +
+                   '</div>' +
+                   '<div class="product__meta">' +
+                     '<span class="product__name">' + escapeHtml(p.name) + '</span>' +
+                     '<span class="product__price">' + money(p.price) + '</span>' +
+                   '</div>' +
+                 '</a>';
+        }).join('');
+      }
+
+      var selectedSize = null;
+
+      function renderProduct(id) {
+        var p = byId[id];
+        if (!p) { return; }
+        selectedSize = null;
+
+        document.getElementById('page-product').innerHTML =
+          '<div class="pdp">' +
+            '<div class="pdp__media">' +
+              '<div class="product__image">' +
+                '<img src="' + p.image + '" alt="' + escapeHtml(p.name) + '" decoding="async">' +
+              '</div>' +
+            '</div>' +
+            '<div class="pdp__info">' +
+              '<h1 class="pdp__name">' + escapeHtml(p.name) + '</h1>' +
+              '<p class="pdp__price">' + money(p.price) + '</p>' +
+              '<p class="pdp__label">Size</p>' +
+              '<div class="sizes" id="sizes">' +
+                SIZES.map(function (s) {
+                  return '<button type="button" class="size" data-size="' + s + '">' + s + '</button>';
+                }).join('') +
+              '</div>' +
+              '<button type="button" class="button button--full" id="add-to-cart">Add to cart</button>' +
+              '<p class="pdp__note" id="pdp-note" role="status"></p>' +
+              '<a class="pdp__back" href="#/shop">Back to shop</a>' +
+            '</div>' +
+          '</div>';
+
+        document.getElementById('sizes').addEventListener('click', function (e) {
+          var btn = e.target.closest('.size');
+          if (!btn) { return; }
+          selectedSize = btn.dataset.size;
+          [].forEach.call(this.querySelectorAll('.size'), function (b) {
+            b.classList.toggle('is-selected', b === btn);
+          });
+          document.getElementById('pdp-note').textContent = '';
+        });
+
+        var addBtn = document.getElementById('add-to-cart');
+        addBtn.addEventListener('click', function () {
+          var note = document.getElementById('pdp-note');
+          if (!selectedSize) { note.textContent = 'Select a size'; return; }
+          addToCart(p.id, selectedSize);
+          paintCartCount();
+          note.textContent = '';
+          addBtn.textContent = 'Added';
+          setTimeout(function () { addBtn.textContent = 'Add to cart'; }, 1200);
+        });
+      }
+
+      function renderCart() {
+        var page = document.getElementById('page-cart');
+        page.classList.toggle('is-empty', cart.length === 0);
+
+        if (!cart.length) {
+          page.innerHTML =
+            '<div class="cart-empty">' +
+              '<p class="cart-empty__message">Your cart is empty.</p>' +
+              '<a class="button" href="#/shop">Continue shopping</a>' +
+            '</div>';
+          return;
+        }
+
+        page.innerHTML =
+          '<div class="cart">' +
+            '<div class="cart-lines">' +
+              cart.map(function (line, i) {
+                var p = byId[line.id];
+                return '<div class="cart-line">' +
+                         '<a class="cart-line__thumb" href="#/product/' + encodeURIComponent(p.id) + '">' +
+                           '<img src="' + p.image + '" alt="" loading="lazy" decoding="async">' +
+                         '</a>' +
+                         '<div class="cart-line__info">' +
+                           '<a class="cart-line__name" href="#/product/' + encodeURIComponent(p.id) + '">' +
+                             escapeHtml(p.name) +
+                           '</a>' +
+                           '<span class="cart-line__size">Size ' + escapeHtml(line.size) + '</span>' +
+                           '<div class="qty" data-index="' + i + '">' +
+                             '<button type="button" class="qty__step" data-step="-1" aria-label="Decrease quantity">&minus;</button>' +
+                             '<span class="qty__value">' + line.qty + '</span>' +
+                             '<button type="button" class="qty__step" data-step="1" aria-label="Increase quantity">+</button>' +
+                           '</div>' +
+                         '</div>' +
+                         '<div class="cart-line__end">' +
+                           '<span class="cart-line__total">' + money(p.price * line.qty) + '</span>' +
+                           '<button type="button" class="cart-line__remove" data-remove="' + i + '">Remove</button>' +
+                         '</div>' +
+                       '</div>';
+              }).join('') +
+            '</div>' +
+            '<div class="cart-summary">' +
+              '<div class="cart-summary__row">' +
+                '<span>Subtotal</span><span>' + money(cartTotal()) + '</span>' +
+              '</div>' +
+              '<p class="cart-summary__note">Shipping and taxes calculated at checkout.</p>' +
+              '<button type="button" class="button button--full" id="checkout">Checkout</button>' +
+              '<p class="pdp__note" id="cart-note" role="status"></p>' +
+              '<a class="pdp__back" href="#/shop">Continue shopping</a>' +
+            '</div>' +
+          '</div>';
+
+        page.querySelector('.cart-lines').addEventListener('click', function (e) {
+          var step = e.target.closest('.qty__step');
+          if (step) {
+            var i = Number(step.closest('.qty').dataset.index);
+            setQty(i, cart[i].qty + Number(step.dataset.step));
+            renderCart();
+            paintCartCount();
+            return;
+          }
+          var remove = e.target.closest('.cart-line__remove');
+          if (remove) {
+            setQty(Number(remove.dataset.remove), 0);
+            renderCart();
+            paintCartCount();
+          }
+        });
+
+        document.getElementById('checkout').addEventListener('click', function () {
+          document.getElementById('cart-note').textContent = 'Checkout is not connected yet.';
+        });
+      }
+
+      function paintCartCount() {
+        var n = cartCount();
+        document.getElementById('nav-count').textContent = n ? ' (' + n + ')' : '';
+      }
+
+      /* ---- render ----------------------------------------------------- */
 
       function render() {
         var route = current();
-        document.body.dataset.route = route;
-        document.body.dataset.theme = route === 'home' ? 'dark' : 'light';
-        ROUTES.forEach(function (name) {
+        var navRoute = route.name === 'product' ? 'shop' : route.name;
+
+        document.body.dataset.route = route.name;
+        document.body.dataset.theme = route.name === 'home' ? 'dark' : 'light';
+
+        if (route.name === 'product') { renderProduct(route.id); }
+        if (route.name === 'cart') { renderCart(); }
+
+        PAGES.forEach(function (name) {
           document.getElementById('page-' + name)
-            .classList.toggle('is-active', name === route);
+            .classList.toggle('is-active', name === route.name);
         });
+
         document.querySelectorAll('.nav a').forEach(function (a) {
-          a.classList.toggle('is-active', a.dataset.route === route);
-          if (a.dataset.route === route) {
+          a.classList.toggle('is-active', a.dataset.route === navRoute);
+          if (a.dataset.route === navRoute) {
             a.setAttribute('aria-current', 'page');
           } else {
             a.removeAttribute('aria-current');
           }
         });
-        if (route === 'home') { playHero(); } else { pauseHero(); }
 
-        document.title = route === 'home'
-          ? 'Elena Velez'
-          : 'Elena Velez — ' + route.charAt(0).toUpperCase() + route.slice(1);
+        if (route.name === 'home') { playHero(); } else { pauseHero(); }
+
+        var titles = { home: 'Elena Velez', shop: 'Elena Velez — Shop', cart: 'Elena Velez — Cart' };
+        document.title = route.name === 'product'
+          ? 'Elena Velez — ' + byId[route.id].name
+          : titles[route.name];
       }
 
       window.addEventListener('hashchange', function () {
         render();
         window.scrollTo(0, 0);
       });
+
+      renderShop();
+      paintCartCount();
       render();
     })();
   </script>
